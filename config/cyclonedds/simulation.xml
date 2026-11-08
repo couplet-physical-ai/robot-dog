@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+  Simulation ROS 2 profile for DDS domain 1.
+
+  ROBOT_DOG_ROS2_INTERFACE is expanded by Cyclone DDS at load time. Keep the
+  interface explicit even for simulation so discovery does not silently move
+  to another host interface.
+-->
+<CycloneDDS xmlns="https://cdds.io/config">
+  <Domain id="1">
+    <General>
+      <Interfaces>
+        <NetworkInterface name="${ROBOT_DOG_ROS2_INTERFACE}" multicast="default" />
+      </Interfaces>
+      <AllowMulticast>default</AllowMulticast>
+    </General>
+  </Domain>
+</CycloneDDS>

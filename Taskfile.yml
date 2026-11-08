@@ -1,0 +1,70 @@
+version: '3'
+
+vars:
+  UV: uv
+
+tasks:
+  default:
+    desc: Run the complete local quality gate
+    cmds:
+      - task: check
+
+  setup:
+    desc: Create the locked development environment
+    cmds:
+      - '{{.UV}} sync --locked --group dev'
+
+  format:
+    desc: Format Python source, tests, and examples with Ruff
+    cmds:
+      - '{{.UV}} run --locked ruff format .'
+
+  format-check:
+    desc: Verify Ruff formatting without changing files
+    cmds:
+      - '{{.UV}} run --locked ruff format --check .'
+
+  lint:
+    desc: Run Ruff's Python lint checks
+    cmds:
+      - '{{.UV}} run --locked ruff check .'
+
+  typecheck:
+    desc: Run Pyright against the src-layout package
+    cmds:
+      - '{{.UV}} run --locked pyright'
+
+  test:
+    desc: Run the pytest suite with branch coverage
+    cmds:
+      - '{{.UV}} run --locked pytest --cov=robot_dog --cov-report=term-missing'
+
+  check:
+    desc: Run the complete local quality gate
+    deps:
+      - format-check
+      - lint
+      - typecheck
+      - test
+      - package
+      - docs
+
+  package:
+    desc: Build the source and wheel distributions
+    cmds:
+      - '{{.UV}} run --locked python -m build'
+
+  docs:
+    desc: Build the MkDocs Material site with strict validation
+    cmds:
+      - '{{.UV}} run --locked mkdocs build --strict'
+
+  fake:
+    desc: Run the hardware-free fake robot workflow
+    cmds:
+      - '{{.UV}} run --locked python -m robot_dog demo'
+
+  doctor:
+    desc: Check local robot-dog development readiness without hardware
+    cmds:
+      - '{{.UV}} run --locked python -m robot_dog doctor'

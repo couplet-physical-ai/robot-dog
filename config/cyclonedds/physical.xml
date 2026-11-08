@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+  Physical ROS 2 profile for DDS domain 0.
+
+  ROBOT_DOG_ROS2_INTERFACE is expanded by Cyclone DDS at load time. Do not
+  replace it with a guessed interface name; source the repository environment
+  helper after selecting and validating the interface.
+-->
+<CycloneDDS xmlns="https://cdds.io/config">
+  <Domain id="0">
+    <General>
+      <Interfaces>
+        <NetworkInterface name="${ROBOT_DOG_ROS2_INTERFACE}" multicast="default" />
+      </Interfaces>
+      <AllowMulticast>default</AllowMulticast>
+    </General>
+  </Domain>
+</CycloneDDS>

@@ -1,0 +1,43 @@
+site_name: robot-dog
+site_description: Full-control, Python-first Unitree Go2 development with offline CI and read-only first-connection defaults
+repo_name: couplet-physical-ai/robot-dog
+repo_url: https://github.com/couplet-physical-ai/robot-dog
+docs_dir: docs
+strict: true
+
+theme:
+  name: material
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting started:
+      - Default CI/offline: getting-started/offline.md
+      - Python-first: getting-started/python.md
+  - Safety:
+      - Safety policy: safety/safety-policy.md
+      - Control authority and boundaries: safety/control-authority.md
+      - First connection checklist: safety/first-connection-checklist.md
+      - Battery and charging: safety/battery-charging.md
+      - Controlled test plan: safety/controlled-test-plan.md
+      - Full-control checklist: safety/full-control-checklist.md
+  - Hardware:
+      - Technical baseline: hardware/technical-baseline.md
+      - Intake: hardware/intake.md
+  - Integrations:
+      - Python SDK2: integrations/python-sdk2.md
+      - Full-control API map: integrations/full-control.md
+      - C++ SDK2: integrations/cpp-sdk2.md
+      - ROS 2: integrations/ros2.md
+  - Architecture: architecture.md
+  - Testing: testing.md
+  - Roadmap: roadmap.md
+  - Compatibility: compatibility.md
+  - Security: security.md
+  - Third-party notices: third-party.md
+  - References: references.md

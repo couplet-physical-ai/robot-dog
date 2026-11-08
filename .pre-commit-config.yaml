@@ -1,0 +1,42 @@
+default_language_version:
+  python: python3.11
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-ast
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.4
+    hooks:
+      - id: ruff-check
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: pyright
+        name: pyright
+        entry: uv run --locked pyright
+        language: system
+        files: ^(src|tests)/.*\.py$
+        pass_filenames: false
+
+      - id: pytest
+        name: pytest (manual)
+        entry: uv run --locked pytest --cov=robot_dog --cov-report=term-missing
+        language: system
+        pass_filenames: false
+        stages: [manual]
+
+      - id: mkdocs
+        name: MkDocs strict build (manual)
+        entry: uv run --locked mkdocs build --strict
+        language: system
+        pass_filenames: false
+        stages: [manual]

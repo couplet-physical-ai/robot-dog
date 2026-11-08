@@ -1,0 +1,41 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.pyright/
+
+# uv and local environments
+.venv/
+.python-version.*
+
+# Coverage and test reports
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Build and packaging artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# MkDocs output
+site/
+
+# Local task/tool state
+.task/
+
+# IDE and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Hardware/runtime logs and local secrets
+*.log
+.env
+.env.*
+!.env.example

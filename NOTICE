@@ -1,0 +1,18 @@
+Copyright 2026 Exowatt, Inc.
+
+This repository contains original Apache-2.0-licensed adapter code; it does not
+include the Unitree SDK or any vendor firmware or binaries.
+
+Optional, separately obtained dependencies (not bundled with this repository):
+
+- Unitree SDK2 (including the Unitree Python/C++ SDK2 and optional ROS 2
+  integration) has upstream BSD-3-Clause top-level license notices. This does
+  not license every transitive dependency or every file in an SDK distribution.
+  Unitree SDK files and binary artifacts must never be bundled into this repo;
+  users obtain them independently from Unitree under their applicable terms.
+- Eclipse CycloneDDS, used by optional Unitree SDK2 profiles, is licensed
+  under EPL-2.0 OR EDL-1.0. CycloneDDS is not bundled. Distributors of
+  independently assembled runtime images must preserve its applicable licenses
+  and notices, including notices for embedded third-party components.
+
+See docs/third-party.md for pinned source references and redistribution limits.

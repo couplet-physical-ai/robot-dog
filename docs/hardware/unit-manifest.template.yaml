@@ -1,0 +1,184 @@
+# Unitree Go2 EDU unit manifest TEMPLATE
+#
+# Copy this file to the approved private inventory for ONE physical unit.
+# This committed template intentionally contains no real serial, MAC, IP,
+# credential, token, key, or private evidence path. Do not replace the
+# placeholders in this repository.
+#
+# Evidence values must be marked observed, reported, inferred, or unknown in
+# the accompanying record. `null` is preferable to an assumption.
+
+schema_version: "0.1"
+record_kind: "unitree-go2-edu-unit-manifest-template"
+classification: "<classification>"
+
+unit:
+  asset_id: "<synthetic-unit-id>"
+  manufacturer: "Unitree Robotics"
+  family: "Go2 EDU"
+  exact_sku: null
+  configuration_label: null
+  serial: null # private inventory only; never commit a real value here
+  firmware:
+    robot: null
+    bootloader: null
+    source: null
+  intake:
+    status: "unknown" # accepted_read_only | accepted_motion_test | hold | rejected
+    date: "YYYY-MM-DD"
+    timezone: "<IANA-timezone>"
+    operator: "<operator-id>"
+    custodian: "<team-or-custodian>"
+    provenance: "<purchase-loan-return-or-other>"
+
+hardware:
+  compute:
+    module: null # do not infer Orin
+    cpu_architecture: null
+    accelerator: null
+    ram_gib: null
+    storage:
+      type: null
+      capacity_gib: null
+      free_gib_at_intake: null
+  sensors:
+    camera:
+      present: null
+      model: null
+      evidence_ref: null
+    depth:
+      present: null
+      model: null
+      evidence_ref: null
+    lidar:
+      present: null
+      model: null
+      evidence_ref: null
+    imu:
+      present: null
+      model: null
+      evidence_ref: null
+    gnss:
+      present: null
+      model: null
+      evidence_ref: null
+    other: []
+  interfaces:
+    # Add only connectors/buses verified on this physical unit.
+    - name: "<observed-interface-name>"
+      kind: "<ethernet-usb-serial-can-wireless-other>"
+      purpose: null
+      physical_location: null
+      verified: false
+      evidence_ref: null
+  controls:
+    emergency_stop:
+      present: null
+      location: null
+      verified: false
+    controller:
+      present: null
+      model: null
+      paired: null
+      evidence_ref: null
+
+network:
+  # Real values belong only in the approved private inventory.
+  dds_link:
+    medium: null # point_to_point_nic | isolated_vlan | other
+    host_interface: null
+    robot_interface: null
+    host_mac: null
+    robot_mac: null
+    host_address: null
+    robot_address: null
+    subnet: null
+    vlan_or_switch_segment: null
+    dds_domain_id: null
+    expected_peers: []
+  routing:
+    default_gateway: null
+    internet_route: null
+    corporate_bridge: null
+    vpn_or_hotspot_bridge: null
+    verification_evidence_ref: null
+  security:
+    dds_security: "not_assumed"
+    python_prebuilt_cyclone_dds_security: "not_available_in_baseline"
+    firewall_policy_ref: null
+    network_change_approval_ref: null
+
+software_baseline:
+  unitree_sdk2:
+    revision: "9754cd153af3da471b0fe5f3aa535e426fb11db3"
+    installed_on_unit: null
+    installed_on_host: null
+    evidence_ref: null
+  unitree_sdk2_python:
+    revision: "65691c8a8bc53b98d3976dba4dbf9d5d20b2e7f5"
+    installed_on_unit: null
+    installed_on_host: null
+    evidence_ref: null
+  unitree_ros2:
+    revision: "668d1ec5a05d1c38d3306bdca7d59f2ba3581a88"
+    installed_on_unit: null
+    installed_on_host: null
+    evidence_ref: null
+  cyclonedds:
+    version: "0.10.2"
+    revision: "9995905bce6c4cf9f740d6438bbf7fcfd1c83dfd"
+    installed_on_unit: null
+    installed_on_host: null
+    evidence_ref: null
+  host:
+    os: null
+    kernel: null
+    architecture: null
+    python: null
+    ros2_distribution: null
+    compiler: null
+    native_artifact_checksums_ref: null
+
+access:
+  shell:
+    capability: "unknown" # none | authorized | unknown
+    method: null
+    privilege: null
+    authorization_ref: null
+  credentials_ref: null # reference only; never a password/token/key
+
+inspection:
+  physical_condition: "unknown"
+  battery_condition: "unknown"
+  charger_condition: "unknown"
+  accessories: []
+  safety_hold_reason: null
+  read_only_smoke_test:
+    attempted: false
+    result: "not_run"
+    evidence_ref: null
+  motion_test:
+    authorized: false
+    procedure_ref: null
+    result: "not_run"
+    evidence_ref: null
+
+artifacts:
+  photo_refs: []
+  sanitized_log_refs: []
+  private_raw_evidence_refs: []
+  manifest_checksum: null
+
+licensing:
+  software_inventory_ref: null
+  sbom_ref: null
+  notices_ref: null
+  redistribution_decision: "not_reviewed"
+  vendor_binaries_present: null
+  vendor_binary_review_ref: null
+
+change_log:
+  - date: "YYYY-MM-DD"
+    operator: "<operator-id>"
+    change: "<initial intake or reviewed change>"
+    evidence_ref: null
