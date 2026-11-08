@@ -1,0 +1,106 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "robot-dog"
+version = "0.1.0"
+description = "Offline-first development tools for Unitree Go2 EDU robots."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+dependencies = []
+
+[project.scripts]
+robot-dog = "robot_dog.cli:main"
+
+# These profiles intentionally remain opt-in. The Unitree SDK brings its own
+# Cyclone DDS dependency; ROS 2 Python bindings (including rclpy) are provided
+# by the system ROS installation rather than PyPI, so this profile contains only
+# ROS bootstrap helpers. None of these profiles are installed by the default uv
+# sync.
+[project.optional-dependencies]
+unitree = [
+  "unitree-sdk2py @ git+https://github.com/unitreerobotics/unitree_sdk2_python.git@65691c8a8bc53b98d3976dba4dbf9d5d20b2e7f5 ; platform_system == 'Linux'",
+]
+cyclonedds = ["cyclonedds==0.10.2 ; platform_system == 'Linux'"]
+ros = [
+  "colcon-common-extensions>=0.3.0,<1",
+  "rosdep>=0.26.0,<1",
+]
+cpp = [
+  "cmake>=3.29,<5",
+  "nanobind>=2.4,<3",
+]
+
+[dependency-groups]
+dev = [
+  "build>=1.2,<2",
+  "coverage[toml]>=7.6,<8",
+  "mkdocs-material>=9.5,<10",
+  "pre-commit>=4.0,<5",
+  "pyright>=1.1.390,<2",
+  "pytest>=8.3,<9",
+  "pytest-cov>=5.0,<8",
+  "ruff>=0.9,<1",
+]
+
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/robot_dog"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.pyright]
+include = ["src"]
+exclude = ["**/__pycache__"]
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"
+reportMissingTypeStubs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--strict-config", "--strict-markers"]
+markers = [
+  "hardware: requires a Unitree robot or other physical hardware",
+  "integration: requires an external service or runtime",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src/robot_dog"]
+
+[tool.coverage.report]
+exclude_also = [
+  "if TYPE_CHECKING:",
+  "raise NotImplementedError",
+]
+show_missing = true
+skip_covered = true
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.coverage.xml]
+output = "coverage.xml"
