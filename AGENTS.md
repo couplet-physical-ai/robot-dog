@@ -5,7 +5,3 @@ Start with the deterministic offline fake (`uv run robot-dog demo`) and tests (`
 Do not commit robot or network identifiers, credentials, raw telemetry, captures, firmware, SDK source, or vendor binaries. The Unitree SDK is a separately obtained optional prerequisite and must never be bundled in this repository.
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [the safety policy](docs/safety/safety-policy.md) before changing a hardware-facing path. Any operation that can connect to or command a robot, change authority or a stop/deadman gate, or touch low-level motor controls requires a separate safety review and a qualified operator. Fake tests cannot establish hardware validation. Never run a hardware operation to validate a code edit.
-
-## CI/CD
-
-This repo runs its CI on **Roadrunner** (Exowatt's Woodpecker + Dagger CI, `.woodpecker/`); it does not deploy from there. Check builds with `gh rr status`, `gh rr watch`, `gh rr logs`, `gh rr rerun` (install: `gh extension install Northwind-Labs/gh-roadrunner && gh alias set rr roadrunner --clobber`) — `gh run` only sees GitHub Actions. Console: https://cicd.apps.example.com.
